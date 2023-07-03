@@ -9,6 +9,18 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentIndex = 0;
   header.style.setProperty('--header-length', header.textContent.length);
 
+  const menu = document.querySelector('.menu');
+  const close = document.querySelector('.close');
+  const nav = document.querySelector('.menu-nav');
+
+  menu.addEventListener('click', () => {
+    nav.classList.add('open-nav');
+  });
+
+  close.addEventListener('click', () => {
+    nav.classList.remove('open-nav');
+  });
+
   // Function to update the text
   function updateText() {
     header.textContent = textValues[currentIndex];
