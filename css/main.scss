@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
     margin: 1.5em;
     font-family: 'Poppins', sans-serif;
@@ -19,6 +23,7 @@ a {
     background-size: cover;
     background-position-x: 20%;
     background-position-y: 20%;
+    animation: introLoad 1.5s forwards ease;
     // overflow: hidden;
 }
 
@@ -95,6 +100,7 @@ header {
     display: inline-block;
     overflow: hidden;
     animation: cursorpro 5s ease-in-out infinite;
+    
 }
 
 h1 {
@@ -109,6 +115,7 @@ h1 {
     border-right: 7px solid;
     margin-bottom: 0;
     white-space: normal;
+    position: relative;
     animation: typing 5s steps(var(--header-length)) infinite, cursor .18s infinite alternate;
   }
   
@@ -242,12 +249,17 @@ h1 {
 section.hero {
     color: white;
     height: 90vh;
+    animation: moveDown 1s ease-in-out forwards;
+    opacity: 0;
 
     .down-arrow {
         stroke: white;
         bottom: 2em;
-        width: 1em;
+        width: .85em;
         animation: float 2s infinite ease-in-out;
+        position: absolute;
+        top: 21.2em;
+        transform: translate(0, 50%); //CENTERED DIV
         
         path {
             fill: white;
@@ -275,7 +287,7 @@ section.hero {
     img {
         width: 100%;
         object-fit: cover;
-        height: 11em;
+        height: 15em;
     }
     .title {
         font-weight: bold;
@@ -307,8 +319,24 @@ section.hero {
   transition: background-color 3.5s ease
 }
 
+@media only screen and (min-width: 680px) {
+
+  body {
+    margin: 1.5em 3em;
+  }
+      }
+
 @media only screen and (min-width: 920px) {
 
+  .more-info {
+    position: absolute;
+    top: 36em;
+    left: 50%;
+    transform: translate(-50%, 0); //CENTERED DIV
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+  }
 
   .menu {
     display: none;
@@ -368,9 +396,10 @@ section.hero {
   .hero-img {
     left: unset;
     right: 0;
-    width: 45%;
+    width: 50%;
     height: 42em;
     z-index: 1;
+    animation: introLoad2 1.5s forwards ease;
   }
 
   .logo {
@@ -390,17 +419,93 @@ section.hero {
     height: auto;
     width: 45%;
     margin-bottom: 8em;
+    .arrowlink {
+      a {
+      display: none;
+      }
+    }
+      svg.down-arrow {
+        stroke: black;
+        position: absolute;
+        top: 22em;
+        width: .85em;
+        transform: translate(0, -50%); //CENTERED DIV
+          path {
+            fill: black;
+          }
+      }
   }
 
+  .feature {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 8em;
+    margin-top: 10em;
+    margin-bottom: 3em;
+    align-items: center;
+
+    img {
+      width: 25em;
+    }
+    .content {
+      text-align: right;
+      width: 25em;
+    }
+  }
+
+  .feature.reverse {
+    justify-content: center;
+    grid-template-areas: 
+      "left right";
+    img {
+      grid-area: left;
+    }
+    .content {
+      text-align: left;
+      width: 25em;
+      justify-self: left;
+    }
+  }
   .container {
     animation: none;
   }
 }
 
-@media only screen and (min-width: 680px) {
-
-    body {
-      margin: 1.5em 3em;
+@media only screen and (min-width: 1200px) { 
+    .wrapper {
+      width: 1200px;
+      margin: 0 auto; //keeps things centered
     }
-        }
-    
+
+    .feature {
+      gap: 0;
+    }
+  }
+
+@keyframes introLoad {
+  0% {
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  };
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);;
+  }
+}
+
+@keyframes introLoad2 {
+  0% {
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  };
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 13% 88%);
+  }
+}
+
+@keyframes moveDown {
+  from {
+    tranform: translateY(-100px)
+  };
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
