@@ -485,6 +485,9 @@ section.hero {
       width: 1200px;
       margin: 0 auto; //keeps things centered
     }
+    .feature {
+      gap: 3.6em;
+    }
   }
 
 @keyframes introLoad {
